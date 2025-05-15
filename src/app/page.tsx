@@ -19,8 +19,7 @@ export default function Home() {
     if (error) {
       console.error('Error fetching enrollment data:', error);
     } else {
-      const sortedData = data.sort((a, b) => b.num_of_enrolled - a.num_of_enrolled);
-      setEnrollmentData(sortedData);
+      setEnrollmentData(data);
     }
     setLoading(false);
   }; 
