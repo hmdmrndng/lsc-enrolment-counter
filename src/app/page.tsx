@@ -24,7 +24,7 @@ export default function Home() {
     }
     setLoading(false);
   };
-
+ 
   useEffect(() => {
     // Initial fetch
     fetchEnrollmentData();
