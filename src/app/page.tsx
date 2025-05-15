@@ -7,6 +7,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   LabelList,
 } from 'recharts';
+import Loading from './components/LoadingPage';
 
 export default function Home() {
   const [enrollmentData, setEnrollmentData] = useState<{ id: number, program_name: string, num_of_enrolled: number }[]>([]);
@@ -51,18 +52,18 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center w-full h-screen">
-      <section className='flex flex-col items-center w-full p-4'>
+      <section className={loading ? `hidden` : `flex flex-col items-center w-full p-4`}>
         <Image
           src="/img/lsc-logo.png"
           alt="LSC Logo"
           width={500}
-          height={500}
+          height={0}
         />
         <h1 className="flex text-2xl font-bold ">Enrollment Summary</h1>
       </section>
       <section className='flex flex-col w-full items-center h-full'>
         {loading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
