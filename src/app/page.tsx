@@ -63,7 +63,6 @@ export default function Home() {
           <BarChart
             data={enrollmentData}
             margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
-            style={{ fontSize: '24px', fontWeight: 'semibold', fill: '#333' }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
