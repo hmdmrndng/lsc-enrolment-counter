@@ -55,8 +55,8 @@ export default function Home() {
         <Image
           src="/img/lsc-logo.png"
           alt="LSC Logo"
-          width={150}
-          height={150}
+          width={500}
+          height={500}
         />
         <h1 className="flex text-2xl font-bold ">Enrollment Summary</h1>
       </section>
@@ -72,7 +72,7 @@ export default function Home() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="program_name"
-                angle={-30}
+                angle={-15}
                 textAnchor="end"
                 interval={0}
                 height={100}
