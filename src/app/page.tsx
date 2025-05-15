@@ -8,44 +8,41 @@ import {
 } from 'recharts';
 
 export default function Home() {
-  const [enrollmentData, setEnrollmentData] = useState<{ program_name: string, num_of_enrolled: number }[]>([]);
+  const [enrollmentData, setEnrollmentData] = useState<{ id: number, program_name: string, num_of_enrolled: number }[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchEnrollmentData = async () => {
     const { data, error } = await supabase
       .from('enrolled_counter')
-      .select('program_name, num_of_enrolled');
+      .select('id, program_name, num_of_enrolled');
 
     if (error) {
       console.error('Error fetching enrollment data:', error);
     } else {
-      setEnrollmentData(data);
+      const sortedData = data.sort((a, b) => a.id - b.id);
+      setEnrollmentData(sortedData);
     }
     setLoading(false);
-  }; 
- 
+  };
+
   useEffect(() => {
-    // Initial fetch
     fetchEnrollmentData();
 
-    // Realtime subscription
     const channel = supabase
       .channel('realtime-enrolled_counter')
       .on(
         'postgres_changes',
         {
-          event: '*', // INSERT, UPDATE, DELETE
+          event: '*',
           schema: 'public',
           table: 'enrolled_counter',
         },
         () => {
-          // Re-fetch data on any change
           fetchEnrollmentData();
         }
       )
       .subscribe();
 
-    // Cleanup
     return () => {
       supabase.removeChannel(channel);
     };
