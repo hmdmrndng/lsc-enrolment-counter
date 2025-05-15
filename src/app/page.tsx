@@ -23,7 +23,7 @@ export default function Home() {
       setEnrollmentData(sortedData);
     }
     setLoading(false);
-  };
+  }; 
  
   useEffect(() => {
     // Initial fetch
